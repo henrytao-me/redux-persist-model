@@ -1,19 +1,19 @@
-import React, { PureComponent } from 'react'
+import { PureComponent } from 'react'
 
 let rehyrated = false
 
-let listeners = []
+const LISTENERS = []
 const addListener = (listener) => {
   if (rehyrated) {
     listener()
   } else {
-    listeners.push(listener)
+    LISTENERS.push(listener)
   }
 }
 const removeListener = (listener) => {
-  const index = listeners.indexOf(listener)
+  const index = LISTENERS.indexOf(listener)
   if (index >= 0) {
-    listeners.slice(index, 1)
+    LISTENERS.slice(index, 1)
   }
 }
 
@@ -21,12 +21,13 @@ export default class PersistModelProvider extends PureComponent {
 
   static rehydrated = () => {
     rehyrated = true
-    listeners.forEach(listener => listener())
+    LISTENERS.forEach(listener => listener())
+    LISTENERS.splice(0, LISTENERS.length)
   }
 
   static reset = () => {
     rehyrated = false
-    listeners = []
+    LISTENERS.splice(0, LISTENERS.length)
   }
 
   state = {
