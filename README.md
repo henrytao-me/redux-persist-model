@@ -49,6 +49,7 @@ const user = new User({
 import { AsyncStorage } from 'react-native'
 import { persistStore } from 'redux-persist'
 import { applyModelTransform } from 'redux-persist-model'
+
 import UserModel from './user'
 
 const MODELS = [UserModel, ...SomeOtherModels]
@@ -62,13 +63,14 @@ persistStore(STORE, {
 
 ### Lazy load component with PersistModelProvider
 
-If you want to wait until redux-persist is rehydrated before render any components to UI, you can use `PersistModelProvider`
+If you want to wait until redux-persist is rehydrated before rendering components to UI, you can use `PersistModelProvider`
 
 ```node
 // store.js
 import { AsyncStorage } from 'react-native'
 import { persistStore } from 'redux-persist'
 import { applyModelTransform, PersistModelProvider } from 'redux-persist-model'
+
 import UserModel from './user'
 
 const MODELS = [UserModel, ...SomeOtherModels]
@@ -82,6 +84,7 @@ persistStore(STORE, {
 // main.js
 import { Provider } from 'react-redux'
 import { PersistModelProvider } from 'redux-persist-model'
+
 import HomeComponent './home'
 
 export default class Main extends PureComponent {
