@@ -40,6 +40,12 @@ const user = new User({
   lastName: 'user-last-name',
   username: 'user-name'
 })
+
+user.firstName
+user.lastName
+user.getFullName()
+user.get('firstName')
+user.get('firstName', 'default-value')
 ```
 
 ### Integrate with redux-persist using applyModelTransform
