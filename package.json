@@ -1,6 +1,6 @@
 {
   "name": "redux-persist-model",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Redux persist model",
   "main": "index.js",
   "scripts": {
