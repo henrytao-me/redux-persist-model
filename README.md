@@ -1,6 +1,6 @@
 # redux-persist-model
 
-Immutable Model for Redux Persist
+Immutable Model for Redux Persist - backed by [Record Immutable](https://facebook.github.io/immutable-js/docs/#/Record)
 
 ## Installation
 
@@ -13,7 +13,7 @@ npm install redux-persist-model --save
 ### Define Model
 
 ```node
-// User.js
+// user.js
 import { Model } from 'redux-persist-model'
 
 const Base = Model.create('User', {
@@ -31,7 +31,7 @@ export default class User extends Base {
 }
 ```
 
-### User Model
+### Use Model
 
 ```node
 const user = new User({
@@ -42,9 +42,61 @@ const user = new User({
 })
 ```
 
-### Integrate with redux-persist
+### Integrate with redux-persist using applyModelTransform
 
+```node
+// store.js
+import { AsyncStorage } from 'react-native'
+import { persistStore } from 'redux-persist'
+import { applyModelTransform } from 'redux-persist-model'
+import UserModel from './user'
 
+const MODELS = [UserModel, ...SomeOtherModels]
+const STORE = ...
+
+persistStore(STORE, {
+  storage: AsyncStorage,
+  transforms: [applyModelTransform(MODELS)]
+})
+```
+
+### Lazy load component with PersistModelProvider
+
+If you want to wait until redux-persist is rehydrated before render any components to UI, you can use `PersistModelProvider`
+
+```node
+// store.js
+import { AsyncStorage } from 'react-native'
+import { persistStore } from 'redux-persist'
+import { applyModelTransform, PersistModelProvider } from 'redux-persist-model'
+import UserModel from './user'
+
+const MODELS = [UserModel, ...SomeOtherModels]
+const STORE = ...
+
+persistStore(STORE, {
+  storage: AsyncStorage,
+  transforms: [applyModelTransform(MODELS)]
+}, () => PersistModelProvider.rehydrated())
+
+// main.js
+import { Provider } from 'react-redux'
+import { PersistModelProvider } from 'redux-persist-model'
+import HomeComponent './home'
+
+export default class Main extends PureComponent {
+
+  render() {
+    return (
+      <Provider store={STORE}>
+        <PersistModelProvider>
+          <HomeComponent />
+        </PersistModelProvider>
+      </Provider>
+    )
+  }
+}
+```
 
 
 ## License
