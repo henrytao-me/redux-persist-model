@@ -8,6 +8,11 @@ Immutable Model for Redux Persist - backed by [Record Immutable](https://faceboo
 npm install redux-persist-model --save
 ```
 
+## Sample app 
+
+Checkout [https://github.com/henrytao-me/react-native-workshop](https://github.com/henrytao-me/react-native-workshop)
+
+
 ## Usages
 
 ### Define Model
