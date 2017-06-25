@@ -4,7 +4,7 @@ Immutable Model for Redux Persist - backed by [Record Immutable](https://faceboo
 
 ## Installation
 
-```node
+```js
 npm install redux-persist-model --save
 ```
 
@@ -12,7 +12,7 @@ npm install redux-persist-model --save
 
 ### Define Model
 
-```node
+```js
 // user.js
 import { Model } from 'redux-persist-model'
 
@@ -33,7 +33,7 @@ export default class User extends Base {
 
 ### Use Model
 
-```node
+```js
 const user = new User({
   id: 'some-user-id',
   firstName: 'user-first-name',
@@ -50,7 +50,7 @@ user.get('firstName', 'default-value')
 
 ### Integrate with redux-persist using applyModelTransform
 
-```node
+```js
 // store.js
 import { AsyncStorage } from 'react-native'
 import { persistStore } from 'redux-persist'
@@ -71,7 +71,7 @@ persistStore(STORE, {
 
 If you want to wait until redux-persist is rehydrated before rendering components to UI, you can use `PersistModelProvider`
 
-```node
+```js
 // store.js
 import { AsyncStorage } from 'react-native'
 import { persistStore } from 'redux-persist'
