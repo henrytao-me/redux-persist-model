@@ -1,3 +1,5 @@
+### [DEPRECATED] Use [redux-persist-transform-immutable](https://github.com/rt2zz/redux-persist-transform-immutable) instead
+
 # redux-persist-model
 
 Immutable Model for Redux Persist - backed by [Record Immutable](https://facebook.github.io/immutable-js/docs/#/Record)
